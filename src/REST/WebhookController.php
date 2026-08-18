@@ -2,8 +2,8 @@
 
 namespace BeplusManager\REST;
 
-use BeplusManager\Storage\PackageRepository;
 use BeplusManager\Deploy\Deployer;
+use BeplusManager\Storage\PackageRepository;
 
 /**
  * GitHub webhook receiver.

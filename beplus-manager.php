@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       Beplus Manager
  * Plugin URI:        https://beplusthemes.com
@@ -11,7 +12,7 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       beplus-manager
- * Domain Path:       /languages
+ * Domain Path:       /languages.
  *
  * @package BeplusManager
  */
@@ -44,24 +45,28 @@ require_once BEPLUS_MANAGER_DIR . 'includes/helpers.php';
 
 /**
  * Boot the plugin.
+ *
+ * @return BeplusManager\Core\Plugin
  */
 function beplus_manager_boot() {
 	static $booted = null;
 	if ( null !== $booted ) {
 		return $booted;
 	}
-	$booted = \BeplusManager\Core\Plugin::instance();
+	$booted = BeplusManager\Core\Plugin::instance();
 	$booted->boot();
 	return $booted;
 }
 
+add_action( 'plugins_loaded', static function () {
+	beplus_manager_boot();
+} );
+
 register_activation_hook( __FILE__, static function () {
 	require_once BEPLUS_MANAGER_DIR . 'includes/helpers.php';
-	\BeplusManager\Core\Plugin::instance()->activate();
+	BeplusManager\Core\Plugin::instance()->activate();
 } );
 
 register_deactivation_hook( __FILE__, static function () {
-	\BeplusManager\Core\Plugin::instance()->deactivate();
+	BeplusManager\Core\Plugin::instance()->deactivate();
 } );
-
-add_action( 'plugins_loaded', 'beplus_manager_boot' );

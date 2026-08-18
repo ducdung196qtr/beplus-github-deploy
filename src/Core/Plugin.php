@@ -29,7 +29,7 @@ final class Plugin {
 
 	private function register_core_services(): void {
 		$this->services['packages'] = new \BeplusManager\Storage\PackageRepository();
-		$this->services['github']   = new \BeplusManager\GitHub\GitHubClient( $this->services['packages'] );
+		$this->services['github']   = new \BeplusManager\GitHub\GitHubClient();
 		$this->services['backup']   = new \BeplusManager\Backup\BackupManager();
 		$this->services['deploy']   = new \BeplusManager\Deploy\Deployer(
 			$this->services['github'],
@@ -111,6 +111,11 @@ final class Plugin {
 		);
 	}
 
+	/**
+	 * Get a registered service.
+	 *
+	 * @return mixed|null
+	 */
 	public function get( string $key ) {
 		return $this->services[ $key ] ?? null;
 	}

@@ -20,6 +20,7 @@ class BackupManager {
 	 *
 	 * @param string $type 'plugin'|'theme'
 	 * @param string $slug Directory slug of the package.
+	 *
 	 * @return string|\WP_Error Backup directory path.
 	 */
 	public function backup_package( string $type, string $slug ) {
@@ -66,8 +67,8 @@ class BackupManager {
 		rename( $target, $trash );
 		$ok = rename( $latest, $target );
 		if ( ! $ok ) {
-			// Attempt to recover.
-			if ( is_dir( $trash ) && ! is_dir( $target ) ) {
+			// Attempt to recover: move the live version back if it still exists.
+			if ( is_dir( $trash ) ) {
 				rename( $trash, $target );
 			}
 			return new \WP_Error( 'beplus_manager_restore', 'Restore failed; original left in place.' );

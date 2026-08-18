@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Global helper functions for Beplus Manager.
  *
@@ -8,6 +9,8 @@
 if ( ! function_exists( 'beplus_manager_get_settings' ) ) {
 	/**
 	 * Get the plugin settings array.
+	 *
+	 * @return array<string,mixed>
 	 */
 	function beplus_manager_get_settings(): array {
 		$defaults = array(
@@ -24,6 +27,8 @@ if ( ! function_exists( 'beplus_manager_get_settings' ) ) {
 if ( ! function_exists( 'beplus_manager_update_settings' ) ) {
 	/**
 	 * Persist the plugin settings array.
+	 *
+	 * @param array<string,mixed> $settings
 	 */
 	function beplus_manager_update_settings( array $settings ): void {
 		update_option( 'beplus_manager_settings', $settings );

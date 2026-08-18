@@ -2,7 +2,7 @@
 
 Deploy WordPress **plugins** and **themes** directly from GitHub repositories (public **or** private) — with automatic one-shot backups, one-click rollback, and GitHub webhook auto-deploy.
 
-Built by [Beplus](https://beplusthemes.com) as a clean-room implementation inspired by the WP Pusher workflow. All code is original; only the general concept is shared.
+Built by [Beplus](https://beplusthemes.com). All code is original.
 
 ---
 
@@ -127,6 +127,15 @@ All endpoints under `/wp-json/beplus-manager/v1/`, protected by `manage_options`
 ---
 
 ## Development
+
+```bash
+npm install                # husky + lint-staged (+ installs git hooks)
+npm run composer:install   # local Composer + vendor/ (no global Composer needed)
+npm run lint:php:all       # PHPStan level 6 + PHP CS Fixer check
+npm run js:check           # JS syntax check
+```
+
+Husky hooks run `lint-staged` (php-cs-fixer auto-fix + PHPStan) on commit and the full CI gate on push.
 
 See:
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — structure & architecture

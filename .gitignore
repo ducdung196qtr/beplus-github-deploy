@@ -18,3 +18,5 @@ Thumbs.db
 # Node / Composer (dev only)
 node_modules/
 vendor/
+composer.phar
+.php-cs-fixer.cache

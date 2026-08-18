@@ -1,0 +1,16 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	bootstrapFiles:
+		- phpstan-bootstrap.php
+	level: 6
+	treatPhpDocTypesAsCertain: false
+	paths:
+		- beplus-manager.php
+		- src
+		- includes
+	excludePaths:
+		analyse:
+			- vendor
+			- node_modules

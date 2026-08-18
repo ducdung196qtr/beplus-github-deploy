@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Pre-push: require Composer vendor/ + full CI gate before git push.
+
+echo "pre-push: checking Composer (vendor/) …"
+npm run ensure:composer || exit 1
+
+echo "pre-push: running CI (PHP lint + JS check) …"
+npm run ci || exit 1
+
+echo "pre-push: all checks passed."

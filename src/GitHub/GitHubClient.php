@@ -2,26 +2,18 @@
 
 namespace BeplusManager\GitHub;
 
-use BeplusManager\Storage\PackageRepository;
-
 /**
  * Thin client for the GitHub REST API.
  */
 class GitHubClient {
 
-	/** @var PackageRepository */
-	private $packages;
-
-	/** @var string */
-	private $token = '';
-
-	public function __construct( PackageRepository $packages ) {
-		$this->packages = $packages;
-		$this->token    = (string) $this->packages->get_setting( 'github_token', '' );
+	public function __construct() {
 	}
 
 	/**
 	 * Verify a GitHub token by fetching the authenticated user.
+	 *
+	 * @return array{ok:bool,login?:string,message:string}
 	 */
 	public function test_token( string $token ): array {
 		$response = $this->request( 'https://api.github.com/user', array(), $token );
@@ -105,6 +97,8 @@ class GitHubClient {
 
 	/**
 	 * Remove the Beplus Manager webhook from a GitHub repo.
+	 *
+	 * @return array{ok:bool,message:string}
 	 */
 	public function delete_webhook( string $repository, string $token ): array {
 		$url      = 'https://api.github.com/repos/' . $repository . '/hooks';
@@ -127,6 +121,8 @@ class GitHubClient {
 
 	/**
 	 * List repositories for the authenticated user (requires token).
+	 *
+	 * @return array{ok:bool,message:string,repos?:array<int,array<string,string|bool>>}
 	 */
 	public function list_repositories( string $token, string $query = '' ): array {
 		$url = 'https://api.github.com/user/repos?per_page=100&sort=updated';
@@ -213,6 +209,7 @@ class GitHubClient {
 	 * Start the GitHub Device Authorization Flow.
 	 *
 	 * @param string $client_id OAuth App client ID.
+	 *
 	 * @return array{ok:bool,message?:string,user_code?:string,verification_uri?:string,verification_uri_complete?:string,device_code?:string,expires_in?:int}
 	 */
 	public function start_device_flow( string $client_id ): array {
@@ -253,6 +250,7 @@ class GitHubClient {
 	 * Poll GitHub for the access token after the user approves.
 	 *
 	 * @param string $client_id OAuth App client ID.
+	 *
 	 * @return array{ok:bool,message?:string,token?:string}
 	 */
 	public function poll_device_token( string $client_id ): array {
@@ -406,7 +404,9 @@ class GitHubClient {
 	/**
 	 * Perform an HTTP request with optional token auth.
 	 *
-	 * @return array|\WP_Error
+	 * @param array<string,mixed> $args
+	 *
+	 * @return array<string,mixed>|\WP_Error
 	 */
 	private function request( string $url, array $args = array(), string $token = '' ) {
 		$headers = array(

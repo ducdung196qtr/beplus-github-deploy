@@ -1,24 +1,25 @@
 {
-  "name": "beplus/beplus-manager",
-  "description": "Deploy WordPress plugins and themes from GitHub with backups, rollback and webhook auto-deploy.",
-  "type": "wordpress-plugin",
-  "license": "GPL-2.0-or-later",
-  "require": {
-    "php": ">=7.4",
-    "ext-zip": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^9.6",
-    "wp-coding-standards/wpcs": "^3.0",
-    "squizlabs/php_codesniffer": "^3.7"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  },
-  "scripts": {
-    "lint": "phpcs --standard=WordPress src includes beplus-manager.php",
-    "lint-fix": "phpcbf --standard=WordPress src includes beplus-manager.php"
-  }
+	"name": "beplus/beplus-manager",
+	"description": "Deploy WordPress plugins and themes from GitHub with backups, rollback and webhook auto-deploy.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4",
+		"ext-zip": "*"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^3.89",
+		"phpstan/phpstan": "^2.1",
+		"szepeviktor/phpstan-wordpress": "^2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"BeplusManager\\": "src/"
+		}
+	},
+	"scripts": {
+		"phpstan": "@php vendor/bin/phpstan analyse --memory-limit=3G",
+		"php-cs-fixer": "@php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose --show-progress=dots --allow-unsupported-php-version=yes",
+		"php-cs-fixer:check": "@php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --allow-unsupported-php-version=yes"
+	}
 }

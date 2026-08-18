@@ -2,10 +2,10 @@
 
 namespace BeplusManager\REST;
 
-use BeplusManager\Storage\PackageRepository;
-use BeplusManager\GitHub\GitHubClient;
-use BeplusManager\Deploy\Deployer;
 use BeplusManager\Backup\BackupManager;
+use BeplusManager\Deploy\Deployer;
+use BeplusManager\GitHub\GitHubClient;
+use BeplusManager\Storage\PackageRepository;
 
 /**
  * Admin REST endpoints for settings, packages, deploy and rollback.
@@ -337,31 +337,6 @@ class SettingsController {
 		return new \WP_REST_Response( array( 'ok' => true, 'message' => "Package {$slug} removed. Files were left in place." ) );
 	}
 
-	/**
-	 * Recursively delete a directory.
-	 */
-	private function remove_dir( string $dir ): bool {
-		if ( ! is_dir( $dir ) ) {
-			return true;
-		}
-		$it = new \RecursiveIteratorIterator(
-			new \RecursiveDirectoryIterator( $dir, \FilesystemIterator::SKIP_DOTS ),
-			\RecursiveIteratorIterator::CHILD_FIRST
-		);
-		foreach ( $it as $item ) {
-			if ( $item->isDir() ) {
-				if ( ! @rmdir( $item->getPathname() ) ) {
-					return false;
-				}
-			} else {
-				if ( ! @unlink( $item->getPathname() ) ) {
-					return false;
-				}
-			}
-		}
-		return @rmdir( $dir );
-	}
-
 	public function deploy( \WP_REST_Request $request ): \WP_REST_Response {
 		$slug = sanitize_file_name( $request->get_param( 'slug' ) );
 		$pkg  = $this->packages->get_package( $slug );
@@ -547,7 +522,7 @@ class SettingsController {
 	/**
 	 * Validate the uploaded ZIP and extract it into the backup root.
 	 *
-	 * @return string|\\WP_Error Backup folder name.
+	 * @return string|\WP_Error Backup folder name.
 	 */
 	private function extract_backup_zip( \WP_REST_Request $request ) {
 		$files = $request->get_file_params();

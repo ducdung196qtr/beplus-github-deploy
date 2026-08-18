@@ -2,8 +2,8 @@
 
 namespace BeplusManager\Deploy;
 
-use BeplusManager\GitHub\GitHubClient;
 use BeplusManager\Backup\BackupManager;
+use BeplusManager\GitHub\GitHubClient;
 
 /**
  * Orchestrates a deploy: backup current version → download zipball → install.
@@ -38,7 +38,7 @@ class Deployer {
 	/**
 	 * Read current progress for a slug.
 	 *
-	 * @return array
+	 * @return array{percent:int,message:string,done:bool,error:bool}
 	 */
 	public function get_progress( string $slug ): array {
 		$data = get_transient( self::PROGRESS_NS . $slug );
@@ -55,7 +55,8 @@ class Deployer {
 	/**
 	 * Deploy a repository to a plugin/theme directory.
 	 *
-	 * @param array $pkg { slug, type, repository, branch, token, subdirectory? }
+	 * @param array{slug?:string,type?:string,repository?:string,branch?:string,token?:string,subdirectory?:string} $pkg
+	 *
 	 * @return array{ok:bool,message:string,backup?:string}
 	 */
 	public function deploy( array $pkg ): array {
@@ -132,6 +133,11 @@ class Deployer {
 	 *
 	 * GitHub zipballs have a top-level folder: <owner>-<repo>-<sha>/
 	 * which is stripped. An optional subdirectory can be selected.
+	 *
+	 * @param string      $zip    Path to the downloaded zipball.
+	 * @param string      $type   plugin|theme.
+	 * @param string      $slug   Target slug/directory.
+	 * @param string|null $subdir Optional subdirectory inside the repo.
 	 *
 	 * @return true|\WP_Error
 	 */

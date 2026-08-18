@@ -2,20 +2,14 @@
 
 How to set up a local development environment, make changes, and test Beplus Manager the way we do.
 
-## 1. Local environment
+## 1. Prerequisites
 
-The simplest setup is a local WordPress install (or a Docker container like the one we use):
-
-```
-wp-app  →  /var/www/html  (Apache + PHP 7.4+)
-          ├── wp-content/plugins/beplus-manager   ← symlink or copy of this repo
-          └── wp-content/themes/
-```
-
-Recommended: symlink the repo into `wp-content/plugins/` so edits are live:
+- **Node.js 24** (see `.nvmrc`) — `nvm use` or install via [nvm](https://github.com/nvm-sh/nvm).
+- **PHP 7.4+** on PATH (or set `PHP_BIN`).
 
 ```bash
-ln -s /path/to/beplus-manager /var/www/html/wp-content/plugins/beplus-manager
+npm install          # husky + lint-staged (+ installs git hooks via "prepare")
+npm run composer:install   # downloads composer.phar locally + installs vendor/ (no global Composer needed)
 ```
 
 ## 2. The development loop
@@ -23,17 +17,20 @@ ln -s /path/to/beplus-manager /var/www/html/wp-content/plugins/beplus-manager
 ```bash
 # 1. Edit source in the repo.
 # 2. Lint PHP (all files):
-find src includes -name '*.php' -exec php -l {} \;
+npm run lint:php:all
 
-# 3. Lint JS:
-node --check admin/js/admin.js
+# 3. Auto-fix style issues:
+npm run lint:php:fix
 
-# 4. Sync to the running site (Docker example):
+# 4. JS syntax check:
+npm run js:check
+
+# 5. Sync to the running site (Docker example):
 cp -r . /opt/wordpress/wp-content/plugins/beplus-manager/
 docker exec wp-app chown -R www-data:www-data /var/www/html/wp-content/plugins/beplus-manager/
 docker exec wp-app apache2ctl -k graceful
 
-# 5. Open the admin page and test.
+# 6. Open the admin page and test.
 ```
 
 ## 3. Testing checklist
@@ -78,7 +75,7 @@ docker exec wp-app php -r '
 ## 5. Creating a release
 
 1. Bump `Version:` in `beplus-manager.php` **and** the `BEPLUS_MANAGER_VERSION` constant.
-2. Run the testing checklist.
+2. Run the testing checklist + `npm run ci`.
 3. Tag the repo:
 
 ```bash
@@ -86,9 +83,20 @@ git add -A && git commit -m "Release v1.0.0"
 git tag v1.0.0 && git push origin main --tags
 ```
 
-4. Optional: `zip -r beplus-manager.zip beplus-manager/` (exclude `.git` and `docs`) for manual uploads.
+4. Optional: `zip -r beplus-manager.zip beplus-manager/` (exclude `.git`, `node_modules`, `vendor` and `docs`) for manual uploads.
 
-## 6. Troubleshooting
+## 6. Quality gates (Husky)
+
+Husky hooks run automatically:
+
+| Hook | Runs |
+|---|---|
+| `pre-commit` | `lint-staged` (php-cs-fixer auto-fix on staged PHP + PHPStan) then `lint:php:all` |
+| `pre-push` | `ensure:composer` then `ci` (js:check + lint:php:all) |
+
+To bypass (emergency only): `git commit --no-verify` / `git push --no-verify`.
+
+## 7. Troubleshooting
 
 | Symptom | Cause / fix |
 |---|---|

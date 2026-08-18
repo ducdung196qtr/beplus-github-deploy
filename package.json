@@ -1,0 +1,24 @@
+{
+  "name": "beplus/beplus-manager",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:php": "node ./scripts/composer.mjs phpstan",
+    "lint:php:all": "node ./scripts/composer.mjs phpstan && node ./scripts/composer.mjs php-cs-fixer:check",
+    "lint:php:fix": "node ./scripts/composer.mjs php-cs-fixer",
+    "lint:php:check": "node ./scripts/composer.mjs php-cs-fixer:check",
+    "composer": "node ./scripts/composer.mjs",
+    "composer:install": "node ./scripts/composer.mjs install",
+    "composer:update": "node ./scripts/composer.mjs update",
+    "ensure:composer": "node ./scripts/ensure-composer.mjs",
+    "js:check": "node --check admin/js/admin.js",
+    "prepush": "node ./scripts/ensure-composer.mjs && npm run ci",
+    "prepare": "husky",
+    "precommit": "lint-staged && npm run lint:php:all",
+    "ci": "npm run js:check && npm run lint:php:all"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5"
+  }
+}

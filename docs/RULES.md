@@ -59,5 +59,18 @@ These rules keep the codebase consistent, safe and reviewable. Follow them for e
 ## Git
 
 - Conventional-ish commit messages: `Add ...`, `Fix ...`, `Refactor ...`, `Bump version to X`.
-- One logical change per commit. No generated files (`.gitignore` covers `*.zip`, `.DS_Store`, etc.).
+- One logical change per commit. No generated files (`.gitignore` covers `*.zip`, `node_modules/`, `vendor/`, `.DS_Store`, etc.).
 - Releases are tagged `v<semver>`.
+- **Husky hooks are mandatory** — `pre-commit` (lint-staged: php-cs-fixer auto-fix + PHPStan) and `pre-push` (CI: js:check + lint:php:all) run automatically. Do not push with `--no-verify` unless truly necessary.
+
+## Tooling (Node.js)
+
+- Node 24 (`.nvmrc`), npm scripts in `package.json`:
+  - `npm run lint:php` — PHPStan only
+  - `npm run lint:php:all` — PHPStan + php-cs-fixer check
+  - `npm run lint:php:fix` — php-cs-fixer auto-fix
+  - `npm run js:check` — `node --check admin/js/admin.js`
+  - `npm run composer:install` — local Composer + vendor/ (no global Composer)
+  - `npm run ci` — full gate (js:check + lint:php:all)
+- PHPStan **level 6**, `phpstan.neon` + `phpstan-bootstrap.php` (WP stubs).
+- PHP CS Fixer config: `.php-cs-fixer.dist.php` (WP-style: tabs, long arrays, single quotes, ordered imports).
