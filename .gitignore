@@ -1,0 +1,20 @@
+# WordPress
+*.sql
+*.log
+wp-content/
+wp-config.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Node / Composer (dev only)
+node_modules/
+vendor/
