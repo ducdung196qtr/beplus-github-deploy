@@ -1,8 +1,8 @@
-/* Beplus Manager Admin JS */
+/* Beplus GitHub Deploy Admin JS */
 (function () {
   'use strict';
 
-  var root = document.getElementById('beplus-manager-root');
+  var root = document.getElementById('beplus-github-deploy-root');
   if (!root) return;
 
   var NS = bmApi.restUrl;
@@ -137,7 +137,7 @@
           .catch(function (e) { showMsg('err', e.message); disconnectBtn.disabled = false; });
       });
 
-      card.appendChild(el('div', { class: 'bm-note', text: 'Token stays on this site. To revoke it on GitHub: github.com/settings/applications → Authorized OAuth Apps → Beplus Manager → Revoke.' }));
+      card.appendChild(el('div', { class: 'bm-note', text: 'Token stays on this site. To revoke it on GitHub: github.com/settings/applications → Authorized OAuth Apps → Beplus GitHub Deploy → Revoke.' }));
       return card;
     }
 
@@ -597,7 +597,7 @@
       });
 
       delBtn.addEventListener('click', function () {
-        if (!confirm('Remove package ' + pkg.slug + ' from Beplus Manager?\n\nThe deployed files will NOT be deleted — they stay live on the site.')) return;
+        if (!confirm('Remove package ' + pkg.slug + ' from Beplus GitHub Deploy?\n\nThe deployed files will NOT be deleted — they stay live on the site.')) return;
         api('packages/' + pkg.slug, { method: 'DELETE' })
           .then(function (r) { showMsg('ok', r.message || 'Package removed.'); return load(); })
           .catch(function (e) { showMsg('err', e.message); });
@@ -845,6 +845,6 @@
   }
 
   load().catch(function (e) {
-    root.innerHTML = '<p>Failed to load Beplus Manager: ' + e.message + '</p>';
+    root.innerHTML = '<p>Failed to load Beplus GitHub Deploy: ' + e.message + '</p>';
   });
 })();

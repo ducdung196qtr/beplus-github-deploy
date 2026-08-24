@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Beplus Manager
+ * Plugin Name:       Beplus GitHub Deploy
  * Plugin URI:        https://beplusthemes.com
  * Description:       Deploy WordPress plugins and themes directly from GitHub repositories (public or private) with automatic one-shot backup and rollback support.
  * Version:           1.0.0
@@ -11,8 +11,8 @@
  * Author URI:        https://beplusthemes.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       beplus-manager
- * Domain Path:       /languages
+ * Text Domain:       beplus-github-deploy
+ * Domain Path:       /languages.
  *
  * @package BeplusManager
  */

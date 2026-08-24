@@ -1,5 +1,5 @@
 {
-  "name": "beplus/beplus-manager",
+  "name": "beplus/beplus-github-deploy",
   "private": true,
   "type": "module",
   "scripts": {

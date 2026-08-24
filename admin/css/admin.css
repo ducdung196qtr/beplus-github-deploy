@@ -1,5 +1,5 @@
-/* Beplus Manager Admin */
-#beplus-manager-root {
+/* Beplus GitHub Deploy Admin */
+#beplus-github-deploy-root {
   max-width: 960px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #1d2327;
@@ -185,4 +185,4 @@
 .bm-progress-fill.error { background: linear-gradient(90deg, #d63638, #f0ad4e); }
 .bm-progress-fill.success { background: linear-gradient(90deg, #2e7d32, #4caf50); }
 .bm-progress-label { font-size: 12px; color: #646970; margin-top: 4px; display: flex; justify-content: space-between; }
-#beplus-manager-root { max-width: 1200px; }
+#beplus-github-deploy-root { max-width: 1200px; }

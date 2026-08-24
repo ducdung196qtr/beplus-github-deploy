@@ -13,7 +13,7 @@ use BeplusManager\Storage\PackageRepository;
  */
 class WebhookController {
 
-	const NS = 'beplus-manager/v1';
+	const NS = 'beplus-github-deploy/v1';
 
 	/** @var PackageRepository */
 	private $packages;

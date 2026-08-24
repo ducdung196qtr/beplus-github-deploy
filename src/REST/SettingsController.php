@@ -16,7 +16,7 @@ use BeplusManager\Storage\PackageRepository;
  */
 class SettingsController {
 
-	const NS = 'beplus-manager/v1';
+	const NS = 'beplus-github-deploy/v1';
 
 	/** @var PackageRepository */
 	private $packages;
@@ -334,7 +334,7 @@ class SettingsController {
 		$pkg  = $this->packages->get_package( $slug );
 
 		// Note: we deliberately DO NOT delete the plugin/theme files from disk.
-		// Removing a package only unlinks it from Beplus Manager, so the files
+		// Removing a package only unlinks it from Beplus GitHub Deploy, so the files
 		// stay live on the site (e.g. the deployed theme/plugin keeps working).
 		$this->packages->delete_package( $slug );
 		beplus_manager_log( "Removed package {$slug} (files left in place).", 'info' );

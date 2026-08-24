@@ -47,7 +47,7 @@ class GitHubClient {
 	 */
 	public function ensure_webhook( string $repository, string $secret, string $token ): array {
 		$url = 'https://api.github.com/repos/' . $repository . '/hooks';
-		$callback = rest_url( 'beplus-manager/v1/webhook' );
+		$callback = rest_url( 'beplus-github-deploy/v1/webhook' );
 
 		// List existing hooks.
 		$resp = $this->request( $url, array(), $token );
@@ -100,13 +100,13 @@ class GitHubClient {
 	}
 
 	/**
-	 * Remove the Beplus Manager webhook from a GitHub repo.
+	 * Remove the Beplus GitHub Deploy webhook from a GitHub repo.
 	 *
 	 * @return array{ok:bool,message:string}
 	 */
 	public function delete_webhook( string $repository, string $token ): array {
 		$url      = 'https://api.github.com/repos/' . $repository . '/hooks';
-		$callback = rest_url( 'beplus-manager/v1/webhook' );
+		$callback = rest_url( 'beplus-github-deploy/v1/webhook' );
 		$resp     = $this->request( $url, array(), $token );
 		if ( is_wp_error( $resp ) ) {
 			return array( 'ok' => false, 'message' => $resp->get_error_message() );
@@ -205,7 +205,7 @@ class GitHubClient {
 			}
 			$dir = array( 'path' => $fallback );
 		}
-		$file = $dir['path'] . '/beplus-manager-' . wp_generate_password( 12, false ) . '.zip';
+		$file = $dir['path'] . '/beplus-github-deploy-' . wp_generate_password( 12, false ) . '.zip';
 		return $file;
 	}
 

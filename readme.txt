@@ -1,4 +1,4 @@
-=== Beplus Manager ===
+=== Beplus GitHub Deploy ===
 Contributors: ducdung196qtr
 Tags: github, deploy, backup, rollback, webhook
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Deploy plugins and themes straight from GitHub — public or private — with on
 
 == Description ==
 
-Beplus Manager lets you deploy WordPress plugins and themes straight from any GitHub repository. It works with both public and private repos and handles the busy work for you:
+Beplus GitHub Deploy lets you deploy WordPress plugins and themes straight from any GitHub repository. It works with both public and private repos and handles the busy work for you:
 
 * **Deploy from GitHub** — pull a plugin or theme straight from a GitHub repo (public or private) with one click.
 * **Type detection** — automatically detects whether a repo is a theme or a plugin and refuses to install into the wrong location.
@@ -31,9 +31,9 @@ Beplus Manager lets you deploy WordPress plugins and themes straight from any Gi
 
 == Installation ==
 
-1. Upload the `beplus-manager` folder to `/wp-content/plugins/`, or install the ZIP via *Plugins → Add New → Upload Plugin*.
+1. Upload the `beplus-github-deploy` folder to `/wp-content/plugins/`, or install the ZIP via *Plugins → Add New → Upload Plugin*.
 2. Activate the plugin through the *Plugins* menu.
-3. Go to **Beplus Manager** in the admin menu.
+3. Go to **Beplus GitHub Deploy** in the admin menu.
 4. In **GitHub Connection**, add a GitHub personal access token (classic, `repo` scope) or use repo-mode *Manual* for public repos.
 5. Add a package, choose its repository and branch, then **Deploy**.
 
@@ -49,7 +49,7 @@ A classic PAT with the `repo` scope for repository access. Enable webhook auto-d
 
 = What happens when I deploy? =
 
-Beplus Manager downloads the repo branch, detects whether it is a plugin or a theme, backs up the current version, and installs the new files in the correct location.
+Beplus GitHub Deploy downloads the repo branch, detects whether it is a plugin or a theme, backs up the current version, and installs the new files in the correct location.
 
 = How do I roll back? =
 

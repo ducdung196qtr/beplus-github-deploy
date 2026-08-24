@@ -1,5 +1,5 @@
 {
-	"name": "beplus/beplus-manager",
+	"name": "beplus/beplus-github-deploy",
 	"description": "Deploy WordPress plugins and themes from GitHub with backups, rollback and webhook auto-deploy.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",

@@ -24,11 +24,11 @@ if ( ! defined( 'BEPLUS_MANAGER_DIR' ) ) {
 }
 
 if ( ! defined( 'BEPLUS_MANAGER_URL' ) ) {
-	define( 'BEPLUS_MANAGER_URL', 'https://example.test/wp-content/plugins/beplus-manager/' );
+	define( 'BEPLUS_MANAGER_URL', 'https://example.test/wp-content/plugins/beplus-github-deploy/' );
 }
 
 if ( ! defined( 'BEPLUS_MANAGER_BASENAME' ) ) {
-	define( 'BEPLUS_MANAGER_BASENAME', 'beplus-manager/beplus-manager.php' );
+	define( 'BEPLUS_MANAGER_BASENAME', 'beplus-github-deploy/beplus-github-deploy.php' );
 }
 
 if ( ! defined( 'BEPLUS_MANAGER_NAMESPACE' ) ) {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP CS Fixer — Beplus Manager (WordPress-friendly defaults).
+ * PHP CS Fixer — Beplus GitHub Deploy (WordPress-friendly defaults).
  *
  * @package BeplusManager
  */
@@ -15,7 +15,7 @@ $finder = PhpCsFixer\Finder::create()
 			$root . '/includes',
 		),
 	)
-	->append( array( $root . '/beplus-manager.php' ) )
+	->append( array( $root . '/beplus-github-deploy.php' ) )
 	->name( '*.php' )
 	->ignoreDotFiles( true )
 	->ignoreVCS( true );

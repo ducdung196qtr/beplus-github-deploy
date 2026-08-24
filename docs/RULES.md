@@ -6,7 +6,7 @@ These rules keep the codebase consistent, safe and reviewable. Follow them for e
 
 ### 1. Namespaces & autoloading
 - Every class lives under the `BeplusManager\` prefix in `src/`, path mirrors the namespace: `BeplusManager\Deploy\Deployer` → `src/Deploy/Deployer.php`.
-- One class per file. No Composer runtime dependency — the PSR-4 fallback in `beplus-manager.php` handles loading.
+- One class per file. No Composer runtime dependency — the PSR-4 fallback in `beplus-github-deploy.php` handles loading.
 
 ### 2. Style (WordPress coding standards)
 - Tabs for indentation, line length ≤ 100 chars where reasonable.

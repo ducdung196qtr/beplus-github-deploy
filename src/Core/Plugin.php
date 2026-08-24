@@ -68,10 +68,10 @@ final class Plugin {
 
 	public function register_admin_menu(): void {
 		add_menu_page(
-			__( 'Beplus Manager', 'beplus-manager' ),
-			__( 'Beplus Manager', 'beplus-manager' ),
+			__( 'Beplus GitHub Deploy', 'beplus-github-deploy' ),
+			__( 'Beplus GitHub Deploy', 'beplus-github-deploy' ),
 			'manage_options',
-			'beplus-manager',
+			'beplus-github-deploy',
 			array( $this, 'render_admin_page' ),
 			'dashicons-update',
 			58
@@ -80,33 +80,33 @@ final class Plugin {
 
 	public function render_admin_page(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'beplus-manager' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'beplus-github-deploy' ) );
 		}
-		echo '<div id="beplus-manager-root"></div>';
+		echo '<div id="beplus-github-deploy-root"></div>';
 	}
 
 	public function enqueue_admin_assets( string $hook ): void {
-		if ( 'toplevel_page_beplus-manager' !== $hook ) {
+		if ( 'toplevel_page_beplus-github-deploy' !== $hook ) {
 			return;
 		}
 		wp_enqueue_style(
-			'beplus-manager-admin',
+			'beplus-github-deploy-admin',
 			BEPLUS_MANAGER_URL . 'admin/css/admin.css',
 			array(),
 			BEPLUS_MANAGER_VERSION
 		);
 		wp_enqueue_script(
-			'beplus-manager-admin',
+			'beplus-github-deploy-admin',
 			BEPLUS_MANAGER_URL . 'admin/js/admin.js',
 			array(),
 			BEPLUS_MANAGER_VERSION,
 			true
 		);
 		wp_localize_script(
-			'beplus-manager-admin',
+			'beplus-github-deploy-admin',
 			'bmApi',
 			array(
-				'restUrl'  => esc_url_raw( rest_url( 'beplus-manager/v1/' ) ),
+				'restUrl'  => esc_url_raw( rest_url( 'beplus-github-deploy/v1/' ) ),
 				'nonce'    => wp_create_nonce( 'wp_rest' ),
 			)
 		);

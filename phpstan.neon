@@ -7,7 +7,7 @@ parameters:
 	level: 6
 	treatPhpDocTypesAsCertain: false
 	paths:
-		- beplus-manager.php
+		- beplus-github-deploy.php
 		- src
 		- includes
 	excludePaths:

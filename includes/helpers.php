@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Global helper functions for Beplus Manager.
+ * Global helper functions for Beplus GitHub Deploy.
  *
  * @package BeplusManager
  */

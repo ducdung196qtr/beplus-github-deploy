@@ -28,7 +28,7 @@ const PLUGIN_SLUG = path.basename( ROOT );
  * Allowlist — only paths needed to run the plugin in WordPress.
  */
 const INCLUDE_GLOBS = [
-	'beplus-manager.php',
+	'beplus-github-deploy.php',
 	'readme.txt',
 	'src/**/*.php',
 	'includes/**/*.php',
@@ -39,14 +39,14 @@ const INCLUDE_GLOBS = [
 
 function readVersion() {
 	const bootstrap = fs.readFileSync(
-		path.join( ROOT, 'beplus-manager.php' ),
+		path.join( ROOT, 'beplus-github-deploy.php' ),
 		'utf8',
 	);
 	const m = bootstrap.match(
 		/define\(\s*'BEPLUS_MANAGER_VERSION'\s*,\s*'([^']+)'\s*\)/,
 	);
 	if ( ! m ) {
-		console.error( 'Could not parse BEPLUS_MANAGER_VERSION from beplus-manager.php' );
+		console.error( 'Could not parse BEPLUS_MANAGER_VERSION from beplus-github-deploy.php' );
 		process.exit( 1 );
 	}
 	return m[ 1 ];

@@ -1,6 +1,6 @@
 # Development Guide
 
-How to set up a local development environment, make changes, and test Beplus Manager the way we do.
+How to set up a local development environment, make changes, and test Beplus GitHub Deploy the way we do.
 
 ## 1. Prerequisites
 
@@ -26,8 +26,8 @@ npm run lint:php:fix
 npm run js:check
 
 # 5. Sync to the running site (Docker example):
-cp -r . /opt/wordpress/wp-content/plugins/beplus-manager/
-docker exec wp-app chown -R www-data:www-data /var/www/html/wp-content/plugins/beplus-manager/
+cp -r . /opt/wordpress/wp-content/plugins/beplus-github-deploy/
+docker exec wp-app chown -R www-data:www-data /var/www/html/wp-content/plugins/beplus-github-deploy/
 docker exec wp-app apache2ctl -k graceful
 
 # 6. Open the admin page and test.
@@ -74,7 +74,7 @@ docker exec wp-app php -r '
 
 ## 5. Creating a release
 
-1. Bump `Version:` in `beplus-manager.php` **and** the `BEPLUS_MANAGER_VERSION` constant.
+1. Bump `Version:` in `beplus-github-deploy.php` **and** the `BEPLUS_MANAGER_VERSION` constant.
 2. Run the testing checklist + `npm run ci`.
 3. Tag the repo:
 
@@ -83,7 +83,7 @@ git add -A && git commit -m "Release v1.0.0"
 git tag v1.0.0 && git push origin main --tags
 ```
 
-4. Optional: `zip -r beplus-manager.zip beplus-manager/` (exclude `.git`, `node_modules`, `vendor` and `docs`) for manual uploads.
+4. Optional: `zip -r beplus-github-deploy.zip beplus-github-deploy/` (exclude `.git`, `node_modules`, `vendor` and `docs`) for manual uploads.
 
 ## 6. Quality gates (Husky)
 

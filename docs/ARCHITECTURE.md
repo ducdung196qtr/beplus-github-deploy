@@ -2,11 +2,11 @@
 
 ## Overview
 
-Beplus Manager is a standard WordPress plugin bootstrapped from a single entry file. It uses a lightweight **PSR-4-style autoloader** (no Composer runtime dependency) and a small **service container** that wires modules together. The admin UI is a single-page vanilla JS app talking to the WP REST API.
+Beplus GitHub Deploy is a standard WordPress plugin bootstrapped from a single entry file. It uses a lightweight **PSR-4-style autoloader** (no Composer runtime dependency) and a small **service container** that wires modules together. The admin UI is a single-page vanilla JS app talking to the WP REST API.
 
 ```
-plugins/beplus-manager/
-├── beplus-manager.php              # Entry point: constants, autoloader, hooks
+plugins/beplus-github-deploy/
+├── beplus-github-deploy.php        # Entry point: constants, autoloader, hooks
 ├── includes/
 │   └── helpers.php                 # Global helper functions
 ├── admin/
@@ -110,7 +110,7 @@ The activity log lives in a separate option `beplus_manager_log` (last 100 entri
 ## Webhook flow
 
 ```
-GitHub push ──► POST /wp-json/beplus-manager/v1/webhook
+GitHub push ──► POST /wp-json/beplus-github-deploy/v1/webhook
                   │  X-Hub-Signature-256: sha256=HMAC(body, secret)
                   ▼
             WebhookController::handle

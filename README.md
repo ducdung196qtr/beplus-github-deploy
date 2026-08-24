@@ -1,4 +1,4 @@
-# Beplus Manager
+# Beplus GitHub Deploy
 
 Deploy WordPress **plugins** and **themes** directly from GitHub repositories (public **or** private) — with automatic one-shot backups, one-click rollback, and GitHub webhook auto-deploy.
 
@@ -34,15 +34,15 @@ Built by [Beplus](https://beplusthemes.com). All code is original.
 
 ## Installation
 
-1. Download this repository as a ZIP, or `git clone https://github.com/ducdung196qtr/beplus-manager.git`.
+1. Download this repository as a ZIP, or `git clone https://github.com/ducdung196qtr/beplus-github-deploy.git`.
 2. In WordPress admin: **Plugins → Add New → Upload Plugin** — select the ZIP and activate.
-3. (Manual) Copy the `beplus-manager` folder into `wp-content/plugins/` and activate from **Plugins**.
+3. (Manual) Copy the `beplus-github-deploy` folder into `wp-content/plugins/` and activate from **Plugins**.
 
 ---
 
 ## Quick Start
 
-1. Open **Beplus Manager** in the admin sidebar.
+1. Open **Beplus GitHub Deploy** in the admin sidebar.
 2. Click **Obtain a GitHub token** — GitHub opens the token creation page with the right scopes pre-selected.
 3. Paste the token and click **Save GitHub token**. You're connected.
 4. Under **Add Package**:
@@ -89,7 +89,7 @@ The **Backups** card lists every snapshot with per-row actions:
 
 ### Auto-deploy (webhooks)
 
-- Toggling **AUTO** on a package creates (or updates) a GitHub webhook on the repository pointing to `wp-json/beplus-manager/v1/webhook` — push events only.
+- Toggling **AUTO** on a package creates (or updates) a GitHub webhook on the repository pointing to `wp-json/beplus-github-deploy/v1/webhook` — push events only.
 - Toggling it off deletes the webhook.
 - Requires the token to have `admin:repo_hook` scope.
 - The receiver verifies the `X-Hub-Signature-256` HMAC against your stored secret before deploying.
@@ -102,7 +102,7 @@ Deleting a package **only unlinks it** — the entry is removed from the plugin,
 
 ## REST API
 
-All endpoints under `/wp-json/beplus-manager/v1/`, protected by `manage_options` + nonce (`X-WP-Nonce: wp_rest`).
+All endpoints under `/wp-json/beplus-github-deploy/v1/`, protected by `manage_options` + nonce (`X-WP-Nonce: wp_rest`).
 
 | Method | Route | Description |
 |---|---|---|

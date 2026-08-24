@@ -1,6 +1,6 @@
-# Beplus Manager — agent briefing
+# Beplus GitHub Deploy — agent briefing
 
-Use this file when changing code under `wp-content/plugins/beplus-manager/`. Architecture and naming standards live in [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+Use this file when changing code under `wp-content/plugins/beplus-github-deploy/`. Architecture and naming standards live in [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
 
 ## What this plugin is
 
@@ -13,20 +13,20 @@ Use this file when changing code under `wp-content/plugins/beplus-manager/`. Arc
 
 | Item | Value |
 |------|-------|
-| Bootstrap file | `beplus-manager.php` |
-| Text domain | `beplus-manager` |
+| Bootstrap file | `beplus-github-deploy.php` |
+| Text domain | `beplus-github-deploy` |
 | PHP namespace | `BeplusManager\` → `src/` |
 | Global functions | `beplus_manager_*` |
 | Constants | `BEPLUS_MANAGER_*` |
-| REST namespace | `beplus-manager/v1` |
-| Admin root id | `#beplus-manager-root` |
+| REST namespace | `beplus-github-deploy/v1` |
+| Admin root id | `#beplus-github-deploy-root` |
 | CSS prefix | `bm-` |
 
 ## Files you usually touch
 
 | Area | Edit (source) | Do not edit as source |
 |------|----------------|------------------------|
-| Bootstrap / activation | `beplus-manager.php` | — |
+| Bootstrap / activation | `beplus-github-deploy.php` | — |
 | Core / domain PHP | `src/**/*.php` | — |
 | Global helpers | `includes/helpers.php` | — |
 | Admin UI | `admin/js/admin.js`, `admin/css/admin.css` | — |
