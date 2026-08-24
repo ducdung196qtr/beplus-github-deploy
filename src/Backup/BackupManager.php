@@ -8,6 +8,11 @@ namespace BeplusManager\Backup;
  */
 class BackupManager {
 
+	// This is a deploy/backup tool: it needs atomic directory moves
+	// (rename), ownership fixes (chown) and recursive deletes that the
+	// WP_Filesystem API does not provide. Direct calls are intentional.
+	// phpcs:disable WordPress.WP.AlternativeFunctions
+
 	/** @var string */
 	private $backup_root;
 

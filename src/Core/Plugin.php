@@ -62,7 +62,8 @@ final class Plugin {
 	}
 
 	public function on_init(): void {
-		load_plugin_textdomain( 'beplus-manager', false, dirname( BEPLUS_MANAGER_BASENAME ) . '/languages' );
+		// Translations are loaded automatically by WordPress from the
+		// plugin's languages/ folder (see the Text Domain header).
 	}
 
 	public function register_admin_menu(): void {

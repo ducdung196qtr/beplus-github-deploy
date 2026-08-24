@@ -10,6 +10,10 @@ use BeplusManager\GitHub\GitHubClient;
  */
 class Deployer {
 
+	// Deploy tool: downloads zipballs and swaps directories atomically,
+	// which WP_Filesystem does not cover. Direct calls are intentional.
+	// phpcs:disable WordPress.WP.AlternativeFunctions
+
 	const PROGRESS_NS = 'beplus_manager_progress_';
 
 	/** @var GitHubClient */

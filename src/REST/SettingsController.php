@@ -9,6 +9,10 @@ use BeplusManager\Storage\PackageRepository;
 
 /**
  * Admin REST endpoints for settings, packages, deploy and rollback.
+ *
+ * File operations below (rename/readfile/unlink) are part of the
+ * deploy/backup feature which WP_Filesystem does not cover.
+ * phpcs:disable WordPress.WP.AlternativeFunctions
  */
 class SettingsController {
 

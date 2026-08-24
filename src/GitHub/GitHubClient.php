@@ -7,6 +7,10 @@ namespace BeplusManager\GitHub;
  */
 class GitHubClient {
 
+	// Used to fetch repo source (zipball/raw) which lives on third-party
+	// hosts by design (this is a deploy tool, not offloading site assets).
+	// phpcs:disable WordPress.WP.AlternativeFunctions,PluginCheck.CodeAnalysis.Offloading
+
 	public function __construct() {
 	}
 

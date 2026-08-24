@@ -6,6 +6,10 @@
  * @package BeplusManager
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'beplus_manager_get_settings' ) ) {
 	/**
 	 * Get the plugin settings array.
