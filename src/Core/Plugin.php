@@ -23,8 +23,17 @@ final class Plugin {
 	public function boot(): void {
 		$this->register_core_services();
 		$this->boot_registered_modules();
+		$this->boot_self_updater();
 
 		add_action( 'init', array( $this, 'on_init' ) );
+	}
+
+	/**
+	 * Wire the self-updater so the plugin can update itself from GitHub
+	 * Releases (WordPress.org no longer accepts storefront/deploy plugins).
+	 */
+	private function boot_self_updater(): void {
+		( new \BeplusManager\Update\SelfUpdater() )->register();
 	}
 
 	private function register_core_services(): void {

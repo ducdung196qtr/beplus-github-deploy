@@ -2,13 +2,12 @@
 
 /**
  * Plugin Name:       Beplus GitHub Deploy
- * Plugin URI:        https://beplusthemes.com
+ * Plugin URI:        https://github.com/ducdung196qtr/beplus-github-deploy
  * Description:       Deploy WordPress plugins and themes directly from GitHub repositories (public or private) with automatic one-shot backup and rollback support.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Beplus
- * Author URI:        https://beplusthemes.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       beplus-github-deploy
@@ -21,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BEPLUS_MANAGER_VERSION', '1.0.0' );
+define( 'BEPLUS_MANAGER_VERSION', '1.0.1' );
 define( 'BEPLUS_MANAGER_FILE', __FILE__ );
 define( 'BEPLUS_MANAGER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BEPLUS_MANAGER_URL', plugin_dir_url( __FILE__ ) );
