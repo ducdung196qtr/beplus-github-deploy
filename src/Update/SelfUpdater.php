@@ -75,20 +75,31 @@ class SelfUpdater {
 			'version' => $match[1],          // "1.0.0"
 			'url'     => (string) ( $body['html_url'] ?? '' ),
 			'notes'   => (string) ( $body['body'] ?? '' ),
-			'zipball' => $this->release_zipball( $tag ),
+			'zipball' => $this->release_zipball( $body ),
 		);
 		set_transient( 'beplus_manager_self_update', $data, self::CACHE_MINUTES * 60 );
 		return $data;
 	}
 
 	/**
-	 * Build the download URL for a specific release tag's "source" zip.
-	 * WordPress can install a plugin from GitHub's codeload tarball because
-	 * the package root contains the plugin bootstrap with the correct slug.
+	 * Build the download URL for a release.
 	 *
-	 * @param string $tag Release tag, e.g. "v1.0.1".
+	 * Prefers a release *asset* zip (the packaged plugin, with the correct
+	 * `beplus-github-deploy/` root folder). Falls back to GitHub's codeload
+	 * tarball, which WordPress can also install (it strips the owner-repo-sha
+	 * wrapper automatically) — but only when no asset zip is attached.
+	 *
+	 * @param array<string,mixed> $release GitHub release payload.
 	 */
-	private function release_zipball( string $tag ): string {
+	private function release_zipball( array $release ): string {
+		$tag = (string) ( $release['tag_name'] ?? '' );
+		if ( ! empty( $release['assets'] ) && is_array( $release['assets'] ) ) {
+			foreach ( $release['assets'] as $asset ) {
+				if ( ! empty( $asset['browser_download_url'] ) && preg_match( '/\.zip$/i', (string) $asset['name'] ) ) {
+					return (string) $asset['browser_download_url'];
+				}
+			}
+		}
 		return 'https://codeload.github.com/' . self::REPO . '/zip/refs/tags/' . rawurlencode( $tag );
 	}
 
